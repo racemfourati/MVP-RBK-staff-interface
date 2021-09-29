@@ -119,7 +119,13 @@ export default class App extends Component {
 
   hundleLogin(user) {
     axios.post('/login',user)
-    .then((data)=>{console.log(data)})
+    .then((data)=>{
+      if(data.data===true){
+        this.setState({
+          isLoggedIn: true,
+        })
+      }
+    })
     .catch((err)=>{console.log(err)})
   }
   switchSignIn = () => {
@@ -190,7 +196,7 @@ export default class App extends Component {
     else if (this.state.isLoggedIn && this.state.cohortPage) {
       return (
         <div>
-          <button>logout</button>
+          <button onClick={this.hundlelogOut}>logout</button>
           <Cohorts studentsCohort={this.getStudentsCohort} refresh={this.hundleAddCohort} cohorts={this.state.cohorts} />
         </div>
       )
@@ -198,7 +204,7 @@ export default class App extends Component {
     else if (this.state.isLoggedIn && this.state.studentsPage) {
       return (
         <div>
-          <button>logout</button>
+          <button onClick={this.hundlelogOut}>logout</button>
           <Students refreshCohort={this.getCohorts} refresh={this.getStudents} students={this.state.students} back={this.hundleBackCohort} cohort={this.state.cohort} />
         </div>
       )

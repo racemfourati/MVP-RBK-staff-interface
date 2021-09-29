@@ -2,6 +2,7 @@ const express = require('express');
 const db = require('./db/index');
 const app = express();
 const port = 1337;
+const crypt = require('./hash')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -85,17 +86,19 @@ app.put('/student/:id', (req, res) => {
 
 //-------------------------------user------------------------------//
 app.post('/signin', (req, res) => {
-  console.log(req.body)
   if (req.body.scode === sc) {
-    var user = new db.users({ username: req.body.username, email: req.body.email, password: req.body.password })
+
+    var salt = crypt.createRandom32String()
+    var hased = crypt.createHash(req.body.password, salt)
+    var user = new db.users({ username: req.body.username, email: req.body.email, password: hased, salt: salt })
     user.save()
       .then(() => { res.status(201).send(true) })
       .catch((err) => { res.status(500).send(err) })
   }
 
-else{
-  res.send('wrong code')
-}
+  else {
+    res.send('wrong code')
+  }
 
 })
 
@@ -105,17 +108,17 @@ else{
 
 app.post('/login', (req, res) => {
   console.log(req.body)
-  db.users.find({username:req.body.username})
-  .then((data)=>{console.log(data)})
-  //   if(data.password==req.body.password){
-  //     res.status(201).send(true)
-  //   }
-  //   else{
-  //     res.status(500).send('wrong password')
-  //   }
-  // })
-  // .catch((err)=>{throw Error(`no user called ${req.body.username}`)})
-  
+  db.users.find({ username: req.body.username })
+    .then((data) => {
+      if (crypt.compareHash(req.body.password,data[0].password,data[0].salt)) {
+        res.status(201).send(true)
+      }
+      else {
+        res.status(500).send('wrong password')
+      }
+    })
+    .catch((err) => { throw Error(`no user called ${req.body.username}`) })
+
 
 })
 
