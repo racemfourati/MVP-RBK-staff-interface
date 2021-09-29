@@ -11,7 +11,7 @@ const Users = new mongoose.Schema({
   const Cohorts = new mongoose.Schema({
     name: { type: String, unique: true },
     start_date:Date,
-    students_number:Number
+    students_number:{type:Number,default:0}
   });
 
 
