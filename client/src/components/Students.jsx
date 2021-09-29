@@ -12,7 +12,8 @@ export default class Students extends Component {
             age: '',
             image: 'test',
             comments: '',
-            cohort_name: this.props.cohort
+            cohort_name: this.props.cohort,
+            toEdit: ''
 
         }
     }
@@ -35,11 +36,26 @@ export default class Students extends Component {
     }
 
     hundleEdit = (obj) => {
-     this.setState({
-        addStudents: false,
-        edit: true,
-     })
-     console.log(obj)
+        this.setState({
+            addStudents: false,
+            edit: true,
+            toEdit: obj._id,
+            name: obj.name,
+            age: obj.age,
+            image: obj.image,
+            comments: obj.comments,
+        })
+
+    }
+    hundleNewEdit = () => {
+        var student = {}
+        student.name = this.state.name
+        student.age = this.state.age
+        student.image = this.state.image
+        student.comments = this.state.comments
+        axios.put(`/student/${this.state.toEdit}`, student)
+            .then(() => { this.props.refresh() })
+            .then(() => { this.hundleCancel() })
     }
 
     hundleNewStudent = () => {
@@ -59,8 +75,9 @@ export default class Students extends Component {
             student.cohort_name = this.state.cohort_name
             axios.post('/student', student)
                 .then(() => { this.props.refresh() })
+                .then(() => { this.props.refreshCohort() })
                 .then(() => { this.hundleCancel() })
-            // .catch((err)=>{throw Error('name already used')})
+            .catch((err)=>{throw Error('problem adding student')})
         }
         else {
             alert('missing fields')
@@ -88,11 +105,11 @@ export default class Students extends Component {
         else if (this.state.edit) {
             return (
                 <div>
-                    <input onChange={this.hundleChange} type='text' name='name'></input>
-                    <input onChange={this.hundleChange} type='number' name='age'></input>
-                    <input onChange={this.hundleChange} type='image' name='image'></input>
-                    <input onChange={this.hundleChange} type='text' name='comments'></input>
-                    <button >edit</button>
+                    <input value={this.state.name} onChange={this.hundleChange} type='text' name='name'></input>
+                    <input value={this.state.age}  onChange={this.hundleChange} type='number' name='age'></input>
+                    <input value={this.state.image}  onChange={this.hundleChange} type='image' name='image'></input>
+                    <input value={this.state.comments}  onChange={this.hundleChange} type='text' name='comments'></input>
+                    <button onClick={this.hundleNewEdit} >edit</button>
                     <button onClick={this.hundleCancel}>cancel</button>
 
                 </div>
