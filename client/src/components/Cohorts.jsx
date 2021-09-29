@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Cohort from './Cohort.jsx'
 import axios from 'axios'
 
 export default class Cohorts extends Component {
@@ -10,6 +11,12 @@ export default class Cohorts extends Component {
             cohortName: '',
             startDate: ''
         }
+    }
+
+
+    hundleDelete = (id) => {
+        axios.delete(`/cohort/${id}`)
+        .then(() => { this.props.refresh() })
     }
 
     hundleChange = (e) => {
@@ -24,9 +31,9 @@ export default class Cohorts extends Component {
             cohort.name = this.state.cohortName
             cohort.start_date = this.state.startDate
             axios.post('/cohort', cohort)
-                .then(() => {
-                    this.hundleCancel()
-                })
+                .then(() => { this.props.refresh() })
+                .then(() => { this.hundleCancel() })
+                .catch((err)=>{throw Error('name already used')})
         }
         else {
             alert('missing fields')
@@ -62,7 +69,12 @@ export default class Cohorts extends Component {
         else {
             return (
                 <div>
-                    <button onClick={this.hundleNewCohort} >new Cohort</button>
+                    <div><button onClick={this.hundleNewCohort} >new Cohort</button></div>
+                    <div>
+                        {this.props.cohorts.map((element, key) =>
+                            <Cohort deleteC={this.hundleDelete} cohort={element} key={key} />
+                        )}
+                    </div>
                 </div>
             )
         }
