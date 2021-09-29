@@ -22,7 +22,7 @@ export default class App extends Component {
   render() {
     if (!this.state.isLoggedIn) {
       return (
-        <div>
+        <div >
           <Login login={this.hundleLogin} />
         </div>
       )

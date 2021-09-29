@@ -37,7 +37,7 @@ export default class Login extends Component {
             <div>
                 <input value={this.state.username} onChange={this.hundleChange} name='username'></input>
                 <input type='password' value={this.state.password} onChange={this.hundleChange} name='password'></input>
-                <button onClick={this.hundleLogin} >login</button>
+                <button onClick={this.hundleLogin}  className="test">login</button>
             </div>
         )
     }

@@ -21,8 +21,8 @@ export default class Cohorts extends Component {
     hundleAddCohort = () => {
         if (this.state.cohortName !== '' && this.state.startDate !== '') {
             var cohort = {}
-            cohort.cohortName = this.state.cohortName
-            cohort.startDate = this.state.startDate
+            cohort.name = this.state.cohortName
+            cohort.start_date = this.state.startDate
             axios.post('/cohort', cohort)
                 .then(() => {
                     this.hundleCancel()
