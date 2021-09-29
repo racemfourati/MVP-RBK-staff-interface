@@ -72,7 +72,7 @@ export default class Cohorts extends Component {
                     <div><button onClick={this.hundleNewCohort} >new Cohort</button></div>
                     <div>
                         {this.props.cohorts.map((element, key) =>
-                            <Cohort deleteC={this.hundleDelete} cohort={element} key={key} />
+                            <Cohort  studentsCohort={this.props.studentsCohort} deleteC={this.hundleDelete} cohort={element} key={key} />
                         )}
                     </div>
                 </div>

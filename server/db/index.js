@@ -23,7 +23,7 @@ const Users = new mongoose.Schema({
     name: String,
     age:Number,
     image:String,
-    comments:[String],
+    comments:String,
     cohort_name:String
   });
 

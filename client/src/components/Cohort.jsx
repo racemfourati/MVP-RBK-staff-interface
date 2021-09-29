@@ -9,7 +9,9 @@
 
         }
 
-        
+        hundleStudents = (e)=>{
+            this.props.studentsCohort(e.target.value)
+        }
 
         hundleDelete = (e) => {
             this.props.deleteC(e.target.value)
@@ -21,7 +23,7 @@
                     {this.props.cohort.start_date}
                     {this.props.cohort.students_number}
                     <button onClick={this.hundleDelete} value={this.props.cohort._id}>delete</button>
-                    <button>students</button>
+                    <button onClick={this.hundleStudents} value={this.props.cohort.name}>students</button>
                 </div>
             )
         }
