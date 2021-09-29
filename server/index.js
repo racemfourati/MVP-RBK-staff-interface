@@ -13,6 +13,12 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+app.post('/cohort',(req, res) => {
+ console.log(req.body) 
+ res.status(201).send()
+ 
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
