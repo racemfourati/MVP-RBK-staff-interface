@@ -16,7 +16,7 @@ export default class Cohorts extends Component {
 
     hundleDelete = (id) => {
         axios.delete(`/cohort/${id}`)
-        .then(() => { this.props.refresh() })
+            .then(() => { this.props.refresh() })
     }
 
     hundleChange = (e) => {
@@ -33,7 +33,7 @@ export default class Cohorts extends Component {
             axios.post('/cohort', cohort)
                 .then(() => { this.props.refresh() })
                 .then(() => { this.hundleCancel() })
-                .catch((err)=>{throw Error('name already used')})
+                .catch((err) => { throw Error('name already used') })
         }
         else {
             alert('missing fields')
@@ -58,22 +58,28 @@ export default class Cohorts extends Component {
     render() {
         if (this.state.addCohort) {
             return (
-                <div>
-                    <input value={this.state.cohortName} onChange={this.hundleChange} type='text' name='cohortName'></input>
-                    <input value={this.state.startDate} onChange={this.hundleChange} type='date' name='startDate'></input>
-                    <button onClick={this.hundleAddCohort}>add cohort</button>
-                    <button onClick={this.hundleCancel}>cancel</button>
+                <div className='center add-cohorts '>
+                    <input className='login-items' placeholder='cohort name' value={this.state.cohortName} onChange={this.hundleChange} type='text' name='cohortName'></input>
+                    <input className='login-items' value={this.state.startDate} onChange={this.hundleChange} type='date' name='startDate'></input>
+                    <div>
+                        <button className='cohort-button-add' onClick={this.hundleAddCohort}>Add cohort</button>
+                        <button className='cohort-button-cancel' onClick={this.hundleCancel}>Cancel</button>
+                    </div>
+
                 </div>
             )
         }
         else {
             return (
-                <div>
-                    <div><button onClick={this.hundleNewCohort} >new Cohort</button></div>
+                <div className='center'>
+                    <div><button className='new-cohort-button' onClick={this.hundleNewCohort} >New Cohort</button></div>
                     <div>
+
                         {this.props.cohorts.map((element, key) =>
-                            <Cohort  studentsCohort={this.props.studentsCohort} deleteC={this.hundleDelete} cohort={element} key={key} />
+
+                            <Cohort studentsCohort={this.props.studentsCohort} deleteC={this.hundleDelete} cohort={element} key={key} />
                         )}
+
                     </div>
                 </div>
             )

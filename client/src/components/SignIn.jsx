@@ -18,7 +18,7 @@ export default class SignIn extends Component {
      
     }
 
-    hundleLogin=()=>{
+    hundleSignin=()=>{
         if(this.state.password !== '' && this.state.username !== '' && this.state.email !== '' && this.state.scode !== ''){
             this.props.signIn(this.state)
           this.setState({
@@ -37,12 +37,12 @@ export default class SignIn extends Component {
 
     render() {
         return (
-            <div>
-                <input value={this.state.username} onChange={this.hundleChange} name='username'></input>
-                <input type='password' value={this.state.password} onChange={this.hundleChange} name='password'></input>
-                <input type='email' value={this.state.email} onChange={this.hundleChange} name='email'></input>
-                <input type='password' value={this.state.scode} onChange={this.hundleChange} name='scode'></input>
-                <button onClick={this.hundleLogin}  >sign in</button>
+            <div className='center'>
+                <input className='login-items' placeholder='username' value={this.state.username} onChange={this.hundleChange} name='username'></input>
+                <input className='login-items' placeholder='password' type='password' value={this.state.password} onChange={this.hundleChange} name='password'></input>
+                <input className='login-items' placeholder='email' type='email' value={this.state.email} onChange={this.hundleChange} name='email'></input>
+                <input className='login-items' placeholder='secret code' type='password' value={this.state.scode} onChange={this.hundleChange} name='scode'></input>
+                <button className='login-items button' onClick={this.hundleSignin}  >sign in</button>
             </div>
         )
     }

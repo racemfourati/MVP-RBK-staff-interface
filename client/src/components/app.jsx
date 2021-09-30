@@ -5,6 +5,7 @@ import axios from 'axios'
 import Students from './Students.jsx';
 import Promise from 'bluebird';
 import SignIn from './SignIn.jsx';
+import logo from '../images/rbk.png'
 
 export default class App extends Component {
   constructor(props) {
@@ -118,15 +119,15 @@ export default class App extends Component {
   //------------------------------------------login-------------------------//
 
   hundleLogin(user) {
-    axios.post('/login',user)
-    .then((data)=>{
-      if(data.data===true){
-        this.setState({
-          isLoggedIn: true,
-        })
-      }
-    })
-    .catch((err)=>{console.log(err)})
+    axios.post('/login', user)
+      .then((data) => {
+        if (data.data === true) {
+          this.setState({
+            isLoggedIn: true,
+          })
+        }
+      })
+      .catch((err) => { console.log(err) })
   }
   switchSignIn = () => {
     this.setState({
@@ -140,15 +141,15 @@ export default class App extends Component {
     })
   }
   hundleSignIn = (user) => {
-    axios.post('/signin',user)
-    .then((data)=>{
-      if(data.data===true){
-        this.setState({
-          isLoggedIn: true,
-        })
-      }
-    })
-    .catch((err)=>{console.log(err)})
+    axios.post('/signin', user)
+      .then((data) => {
+        if (data.data === true) {
+          this.setState({
+            isLoggedIn: true,
+          })
+        }
+      })
+      .catch((err) => { console.log(err) })
   }
 
   //------------------------------------------login-------------------------//
@@ -161,12 +162,12 @@ export default class App extends Component {
 
 
   //------------------------------------------logout-------------------------//
- hundlelogOut=()=>{
-   this.setState({
-    isLoggedIn: false,
-   })
- }
-   //------------------------------------------logout-------------------------//
+  hundlelogOut = () => {
+    this.setState({
+      isLoggedIn: false,
+    })
+  }
+  //------------------------------------------logout-------------------------//
 
 
 
@@ -175,20 +176,36 @@ export default class App extends Component {
   render() {
     if (!this.state.isLoggedIn && this.state.signIn) {
       return (
-        <div >
-          <SignIn signIn={this.hundleSignIn} />
-          <button onClick={this.switchLogin}>log in </button>
-
+        <div>
+          <div className='nav-bar center'> 
+            <h1>Welcome to RBK staff app</h1>
+          </div >
+          <div className='center'>
+            <div  className='login'>
+              <div><SignIn signIn={this.hundleSignIn} /></div>
+              <h4>already have an account ?  <a  onClick={this.switchLogin}>log in </a></h4>
+            </div>
+           
+          </div>
         </div>
       )
 
     }
     else if (!this.state.isLoggedIn) {
       return (
-        <div >
 
-          <Login login={this.hundleLogin} />
-          <button onClick={this.switchSignIn}>sign in </button>
+        <div >
+          <div className='nav-bar center'>
+          
+            <h1>Welcome to RBK staff app</h1>
+          </div>
+          <div className='center'>
+            <div className='login'>
+              <div ><Login login={this.hundleLogin} /></div>
+              <h4>create account ?  click here <a  onClick={this.switchSignIn}>sign in </a></h4>
+            </div>
+            
+          </div>
         </div>
       )
     }
@@ -196,16 +213,29 @@ export default class App extends Component {
     else if (this.state.isLoggedIn && this.state.cohortPage) {
       return (
         <div>
-          <button onClick={this.hundlelogOut}>logout</button>
+        <div className='nav-bar center'> 
+            <h1> RBK cohorts</h1>
+          </div >
+        <div className='center'>
+          <div className='cohorts'>
+            {/* <button onClick={this.hundlelogOut}>logout</button> */}
           <Cohorts studentsCohort={this.getStudentsCohort} refresh={this.hundleAddCohort} cohorts={this.state.cohorts} />
+          </div>
+          
+        </div>
         </div>
       )
     }
     else if (this.state.isLoggedIn && this.state.studentsPage) {
       return (
-        <div>
+        <div >
+          <div className='nav-bar center'> 
+            <h1> RBK {this.state.cohort} Students</h1>
+          </div >
+          <div className='center'>
           <button onClick={this.hundlelogOut}>logout</button>
           <Students refreshCohort={this.getCohorts} refresh={this.getStudents} students={this.state.students} back={this.hundleBackCohort} cohort={this.state.cohort} />
+        </div>
         </div>
       )
     }

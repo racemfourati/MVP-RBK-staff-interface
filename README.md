@@ -10,7 +10,7 @@
 
 
 ## Summary ##
-- The app contains informations about all RBK cohorts (starting date,sudents number...) and for each cohort there is informations about the students of that cohort (name, image,comments...)
+- The app contains informations about all RBK cohorts (starting date,sudents number...) and for each cohort there is informations about the students of that cohort (name,  age,comments...)
 
 ## Problem ##
 - The number of students of  RBK  is growing  so the staff-team need an app to manage the students informations 

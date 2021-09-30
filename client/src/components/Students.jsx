@@ -10,7 +10,6 @@ export default class Students extends Component {
             edit: false,
             name: '',
             age: '',
-            image: 'test',
             comments: '',
             cohort_name: this.props.cohort,
             toEdit: ''
@@ -29,7 +28,6 @@ export default class Students extends Component {
             edit: false,
             name: '',
             age: '',
-            image: 'test',
             comments: '',
             cohort_name: this.props.cohort
         })
@@ -42,7 +40,6 @@ export default class Students extends Component {
             toEdit: obj._id,
             name: obj.name,
             age: obj.age,
-            image: obj.image,
             comments: obj.comments,
         })
 
@@ -51,7 +48,6 @@ export default class Students extends Component {
         var student = {}
         student.name = this.state.name
         student.age = this.state.age
-        student.image = this.state.image
         student.comments = this.state.comments
         axios.put(`/student/${this.state.toEdit}`, student)
             .then(() => { this.props.refresh() })
@@ -66,18 +62,17 @@ export default class Students extends Component {
     }
 
     hundleAddStudent = () => {
-        if (this.state.name !== '' && this.state.age !== '' && this.state.image !== '') {
+        if (this.state.name !== '' && this.state.age !== '') {
             var student = {}
             student.name = this.state.name
             student.age = this.state.age
-            student.image = this.state.image
             student.comments = this.state.comments
             student.cohort_name = this.state.cohort_name
             axios.post('/student', student)
                 .then(() => { this.props.refresh() })
                 .then(() => { this.props.refreshCohort() })
                 .then(() => { this.hundleCancel() })
-            .catch((err)=>{throw Error('problem adding student')})
+                .catch((err) => { throw Error('problem adding student') })
         }
         else {
             alert('missing fields')
@@ -92,11 +87,10 @@ export default class Students extends Component {
     render() {
         if (this.state.addStudents) {
             return (
-                <div>
-                    <input onChange={this.hundleChange} type='text' name='name'></input>
-                    <input onChange={this.hundleChange} type='number' name='age'></input>
-                    <input onChange={this.hundleChange} type='image' name='image'></input>
-                    <input onChange={this.hundleChange} type='text' name='comments'></input>
+                <div className='center'>
+                    <input placeholder='student name' onChange={this.hundleChange} type='text' name='name'></input>
+                    <input placeholder='student age' onChange={this.hundleChange} type='number' name='age'></input>
+                    <input placeholder='comment' onChange={this.hundleChange} type='text' name='comments'></input>
                     <button onClick={this.hundleAddStudent}>add</button>
                     <button onClick={this.hundleCancel}>cancel</button>
                 </div>
@@ -104,11 +98,10 @@ export default class Students extends Component {
         }
         else if (this.state.edit) {
             return (
-                <div>
-                    <input value={this.state.name} onChange={this.hundleChange} type='text' name='name'></input>
-                    <input value={this.state.age}  onChange={this.hundleChange} type='number' name='age'></input>
-                    <input value={this.state.image}  onChange={this.hundleChange} type='image' name='image'></input>
-                    <input value={this.state.comments}  onChange={this.hundleChange} type='text' name='comments'></input>
+                <div className='center'>
+                    <input placeholder='student name' value={this.state.name} onChange={this.hundleChange} type='text' name='name'></input>
+                    <input placeholder='student age' value={this.state.age} onChange={this.hundleChange} type='number' name='age'></input>
+                    <input placeholder='comment' value={this.state.comments} onChange={this.hundleChange} type='text' name='comments'></input>
                     <button onClick={this.hundleNewEdit} >edit</button>
                     <button onClick={this.hundleCancel}>cancel</button>
 
@@ -117,15 +110,20 @@ export default class Students extends Component {
         }
         else {
             return (
-                <div>
-                    <h1>Students of {this.state.cohort_name}</h1>
+
+                <div className='center'>
                     <button onClick={this.hundleNewStudent}>add Student</button>
                     <button onClick={this.props.back}>back to cohorts</button>
                     <div>
-                        {this.props.students.map((element, key) =>
-                            <Student editS={this.hundleEdit} deleteS={this.hundleDelete} student={element} key={key} />
-                        )}
+                        <ul>
+                            {this.props.students.map((element, key) =>
+                                <li>
+                                    <Student editS={this.hundleEdit} deleteS={this.hundleDelete} student={element} key={key} />
+                                </li>
+                            )}
+                        </ul>
                     </div>
+
 
                 </div>
             )

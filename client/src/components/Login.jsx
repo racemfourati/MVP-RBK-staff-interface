@@ -34,10 +34,10 @@ export default class Login extends Component {
 
     render() {
         return (
-            <div>
-                <input value={this.state.username} onChange={this.hundleChange} name='username'></input>
-                <input type='password' value={this.state.password} onChange={this.hundleChange} name='password'></input>
-                <button onClick={this.hundleLogin}  className="test">login</button>
+            <div className='center '>
+                <div className='login-items '><input placeholder='username' value={this.state.username} onChange={this.hundleChange} name='username'></input></div>
+                <div className='login-items '><input placeholder='password' type='password' value={this.state.password} onChange={this.hundleChange} name='password'></input></div>
+                <button  className='login-items button' onClick={this.hundleLogin}  >Login</button>
             </div>
         )
     }

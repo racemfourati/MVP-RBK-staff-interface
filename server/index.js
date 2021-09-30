@@ -117,7 +117,7 @@ app.post('/login', (req, res) => {
         res.status(500).send('wrong password')
       }
     })
-    .catch((err) => { throw Error(`no user called ${req.body.username}`) })
+    .catch(() => { throw Error(`no user called ${req.body.username}`) })
 
 
 })

@@ -1,3 +1,153 @@
-button{
-    color:red;
+.center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    
 }
+
+body{
+    background-color: #4DC3CE;
+}
+.button{
+    width: 70px;
+    height: 40px;
+    border-radius: 10px;
+    border:0px;
+    background-color: #E91180;
+    font-size: 16px;
+    font-weight: bold;
+    color:white;
+}
+
+a{
+    cursor:pointer;
+    color:#E91180;
+}
+
+.login{
+    width:300px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin:30px;
+    
+}
+
+.login-items{
+    margin:15px 20px
+}
+
+input{
+    width: 200px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1.5px solid black;
+}
+
+.nav-bar{
+    width:102%;
+    height: 100px;
+    background-color: #E91180;
+    color: white;
+    margin-top: -9px;
+   margin-left: -8px;
+
+}
+.logo{
+    height:60% ;
+}
+
+
+.cohort{
+    width: 300px;
+    height: 220px;
+    border:1.5px solid #E91180;
+    margin: 30px;
+    border-radius: 12px;
+    background-color: white;
+
+}
+.cohort-button-delete{
+    height: 32px;
+    border-radius: 12px;
+    background-color: #E91180;
+    border:1.5px solid ;
+    margin:10px 10px;
+    color: white;
+    font-weight: bold;
+
+}
+.cohort-button-update{
+    height: 32px;
+    border-radius: 12px;
+    background-color: #E91180;
+    border:1.5px solid ;
+    margin:10px 10px;
+    color: white;
+    font-weight: bold;
+
+}
+
+.cohort-button-cancel{
+    width: 92px;
+    height: 32px;
+    border-radius: 12px;
+    background-color: rgb(165, 160, 160);
+    border:1.5px solid black;
+    margin:10px 10px;
+    color: white;
+    font-weight: bold;
+
+}
+
+.cohort-button-add{
+    height: 32px;
+    border-radius: 12px;
+    background-color: #E91180;
+    border:1.5px solid black ;
+    margin:10px 10px;
+    color: white;
+    font-weight: bold;
+
+}
+.cohort-buttons{
+    margin-left: 184px;
+    margin-top:-23px;
+
+}
+
+.cohorts{
+    margin: 30px;
+}
+
+.new-cohort-button{
+    width: 300px;
+    height: 32px;
+    border-radius: 12px;
+    background-color: #E91180 ;
+    border:1.5px solid ;
+    margin:10px 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.cohort-data{
+    text-align: center;
+}
+
+.cohort-text{
+    font-weight: bold;
+    margin-left: 10px;
+}
+.cohort-value{
+    margin-left: 10px;
+}
+
+.add-cohorts{
+    margin:175px
+}
+
+
