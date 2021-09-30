@@ -68,12 +68,13 @@ input{
     margin: 30px;
     border-radius: 12px;
     background-color: white;
+    opacity:0.8 ;
 
 }
 .cohort-button-delete{
     height: 32px;
     border-radius: 12px;
-    background-color: #E91180;
+    background-color: gray;
     border:1.5px solid ;
     margin:10px 10px;
     color: white;
@@ -113,8 +114,54 @@ input{
     font-weight: bold;
 
 }
+
+.student-button-delete{
+    width: 92px;
+    height: 32px;
+    border-radius: 12px;
+    background-color: rgb(165, 160, 160);
+    border:1.5px solid black;
+    margin:10px 10px;
+    color: white;
+    font-weight: bold;
+
+}
+.student-button-update{
+    width:90px;
+    height: 32px;
+    border-radius: 12px;
+    background-color: #E91180;
+    border:1.5px solid black ;
+    margin:10px 10px;
+    color: white;
+    font-weight: bold;
+
+}
+
+.student-button-add{
+    width:90px;
+    height: 32px;
+    border-radius: 12px;
+    background-color: #E91180;
+    border:1.5px solid black ;
+    margin:10px 10px;
+    color: white;
+    font-weight: bold;
+
+}
+.student-button-edit{
+    width:90px;
+    height: 32px;
+    border-radius: 12px;
+    background-color: rgb(165, 160, 160);
+    border:1.5px solid black ;
+    margin:10px 10px;
+    color: white;
+    font-weight: bold;
+
+}
 .cohort-buttons{
-    margin-left: 184px;
+    margin-left: 175px;
     margin-top:-23px;
 
 }
@@ -150,4 +197,70 @@ input{
     margin:175px
 }
 
+.student{
+    width: 200px;
+    height: 130px;
+    border:1.5px solid black;
+    margin: 30px;
+    border-radius: 12px;
+    background-color: white; 
+    opacity:0.8 ;
+}
 
+.students{
+
+    justify-content:left !important;
+    flex-wrap: wrap;
+    flex-direction: row !important;
+    
+
+}
+
+.student-buttons{
+    margin-left: 23px;
+    margin-top:-23px;
+
+}
+
+.student-box{
+    height: 300px;
+    width: 295px;
+}
+ 
+.logout-button{
+    width: 120px;
+    height: 32px;
+    border-radius: 12px;
+    background-color: rgb(165, 160, 160) ;
+    border:1.5px solid ;
+    margin:5px 10px;
+    color: white;
+    font-weight: bold;
+    margin-right: -1360px;
+    margin-top: 20px;
+}
+
+.add-student-button{
+    width: 120px;
+    height: 32px;
+    border-radius: 12px;
+    background-color: #E91180 ;
+    border:1.5px solid ;
+    margin:5px 10px;
+    color: white;
+    font-weight: bold;
+    margin-right: -1360px;
+    
+}
+.back-cohort-button{
+    width: 120px;
+    height: 32px;
+    border-radius: 12px;
+    background-color: rgb(165, 160, 160) ;
+    border:1.5px solid ;
+    margin:5px 10px;
+    color: white;
+    font-weight: bold;
+    margin-right: -1360px;
+    
+}

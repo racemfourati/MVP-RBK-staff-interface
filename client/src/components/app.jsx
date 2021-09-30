@@ -177,15 +177,15 @@ export default class App extends Component {
     if (!this.state.isLoggedIn && this.state.signIn) {
       return (
         <div>
-          <div className='nav-bar center'> 
+          <div className='nav-bar center'>
             <h1>Welcome to RBK staff app</h1>
           </div >
           <div className='center'>
-            <div  className='login'>
+            <div className='login'>
               <div><SignIn signIn={this.hundleSignIn} /></div>
-              <h4>already have an account ?  <a  onClick={this.switchLogin}>log in </a></h4>
+              <h4>Already have an account ? Click here  <a onClick={this.switchLogin}>log in </a></h4>
             </div>
-           
+
           </div>
         </div>
       )
@@ -196,15 +196,15 @@ export default class App extends Component {
 
         <div >
           <div className='nav-bar center'>
-          
+
             <h1>Welcome to RBK staff app</h1>
           </div>
           <div className='center'>
             <div className='login'>
               <div ><Login login={this.hundleLogin} /></div>
-              <h4>create account ?  click here <a  onClick={this.switchSignIn}>sign in </a></h4>
+              <h4>Create an account ?  Click here <a onClick={this.switchSignIn}>sign in </a></h4>
             </div>
-            
+
           </div>
         </div>
       )
@@ -213,29 +213,31 @@ export default class App extends Component {
     else if (this.state.isLoggedIn && this.state.cohortPage) {
       return (
         <div>
-        <div className='nav-bar center'> 
+          <div className='nav-bar center'>
             <h1> RBK cohorts</h1>
           </div >
-        <div className='center'>
-          <div className='cohorts'>
-            {/* <button onClick={this.hundlelogOut}>logout</button> */}
-          <Cohorts studentsCohort={this.getStudentsCohort} refresh={this.hundleAddCohort} cohorts={this.state.cohorts} />
+          <div className='center'>
+            <button className='logout-button' onClick={this.hundlelogOut}>Logout</button>
+            <div className='cohorts'>
+              <Cohorts studentsCohort={this.getStudentsCohort} refresh={this.hundleAddCohort} cohorts={this.state.cohorts} />
+            </div>
+
           </div>
-          
-        </div>
         </div>
       )
     }
     else if (this.state.isLoggedIn && this.state.studentsPage) {
       return (
         <div >
-          <div className='nav-bar center'> 
+          <div className='nav-bar center'>
             <h1> RBK {this.state.cohort} Students</h1>
           </div >
           <div className='center'>
-          <button onClick={this.hundlelogOut}>logout</button>
-          <Students refreshCohort={this.getCohorts} refresh={this.getStudents} students={this.state.students} back={this.hundleBackCohort} cohort={this.state.cohort} />
-        </div>
+            <button className='logout-button' onClick={this.hundlelogOut}>Logout</button>
+            <div >
+              <Students refreshCohort={this.getCohorts} refresh={this.getStudents} students={this.state.students} back={this.hundleBackCohort} cohort={this.state.cohort} />
+            </div>
+          </div>
         </div>
       )
     }

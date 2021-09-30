@@ -20,6 +20,7 @@ export default class Students extends Component {
     hundleDelete = (id) => {
         axios.delete(`/student/${id}`)
             .then(() => { this.props.refresh() })
+            .then(() => { this.props.refreshCohort() })
     }
 
     hundleCancel = () => {
@@ -87,24 +88,28 @@ export default class Students extends Component {
     render() {
         if (this.state.addStudents) {
             return (
-                <div className='center'>
-                    <input placeholder='student name' onChange={this.hundleChange} type='text' name='name'></input>
-                    <input placeholder='student age' onChange={this.hundleChange} type='number' name='age'></input>
-                    <input placeholder='comment' onChange={this.hundleChange} type='text' name='comments'></input>
-                    <button onClick={this.hundleAddStudent}>add</button>
-                    <button onClick={this.hundleCancel}>cancel</button>
+                <div className='center add-cohorts'>
+                    <input className='login-items' placeholder='student name' onChange={this.hundleChange} type='text' name='name'></input>
+                    <input className='login-items' placeholder='student age' onChange={this.hundleChange} type='number' name='age'></input>
+                    <input className='login-items' placeholder='comment' onChange={this.hundleChange} type='text' name='comments'></input>
+                    <div className='students-buttons'>
+                        <button className='login-items student-button-edit' onClick={this.hundleCancel}>Cancel</button>
+                        <button className='login-items student-button-add' onClick={this.hundleAddStudent}>Add</button>
+                    </div>
                 </div>
             )
         }
         else if (this.state.edit) {
             return (
-                <div className='center'>
-                    <input placeholder='student name' value={this.state.name} onChange={this.hundleChange} type='text' name='name'></input>
-                    <input placeholder='student age' value={this.state.age} onChange={this.hundleChange} type='number' name='age'></input>
-                    <input placeholder='comment' value={this.state.comments} onChange={this.hundleChange} type='text' name='comments'></input>
-                    <button onClick={this.hundleNewEdit} >edit</button>
-                    <button onClick={this.hundleCancel}>cancel</button>
+                <div className='center add-cohorts'>
 
+                    <input className='login-items' placeholder='student name' value={this.state.name} onChange={this.hundleChange} type='text' name='name'></input>
+                    <input className='login-items' placeholder='student age' value={this.state.age} onChange={this.hundleChange} type='number' name='age'></input>
+                    <input className='login-items' placeholder='comment' value={this.state.comments} onChange={this.hundleChange} type='text' name='comments'></input>
+                    <div className='students-buttons'>
+                        <button className=' login-items student-button-edit' onClick={this.hundleCancel}>Cancel</button>
+                        <button className='login-items student-button-add' onClick={this.hundleNewEdit} >Edit</button>
+                    </div>
                 </div>
             )
         }
@@ -112,16 +117,16 @@ export default class Students extends Component {
             return (
 
                 <div className='center'>
-                    <button onClick={this.hundleNewStudent}>add Student</button>
-                    <button onClick={this.props.back}>back to cohorts</button>
-                    <div>
-                        <ul>
-                            {this.props.students.map((element, key) =>
-                                <li>
-                                    <Student editS={this.hundleEdit} deleteS={this.hundleDelete} student={element} key={key} />
-                                </li>
-                            )}
-                        </ul>
+                    <button className='back-cohort-button' onClick={this.props.back}>Back to cohorts</button>
+                    <button className='add-student-button' onClick={this.hundleNewStudent}>Add Student</button>
+                    <div className='students center'>
+
+                        {this.props.students.map((element, key) =>
+
+                            <Student editS={this.hundleEdit} deleteS={this.hundleDelete} student={element} key={key} />
+
+                        )}
+
                     </div>
 
 

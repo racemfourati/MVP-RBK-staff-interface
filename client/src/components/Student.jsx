@@ -16,14 +16,16 @@ export default class Student extends Component {
     render() {
         console.log(this.props.student)
         return (
-            <div>
-                <div>
-                    <p>Name:{this.props.student.name}</p>
-                    <p>Age:{this.props.student.age}</p>
-                    <p>Comments:{this.props.student.comments}</p>
+            <div  className='student-box'>
+                <div className='student'>
+                    <p className='login-items'>Name:{this.props.student.name}</p>
+                    <p className='login-items'>Age:{this.props.student.age}</p>
+                    <p className='login-items'>Comments:{this.props.student.comments}</p>
                 </div>
-                <button className='cohort-button-delete' onClick={this.hundleDelete} value={this.props.student._id}>delete</button>
-                <button className='cohort-button-update' onClick={this.hundleUpdate}>update</button>
+                <div className='student-buttons'>
+                    <button className='student-button-delete' onClick={this.hundleDelete} value={this.props.student._id}>Delete</button>
+                    <button className='student-button-update' onClick={this.hundleUpdate}>Update</button>
+                </div>
             </div>
         )
     }

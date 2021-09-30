@@ -39,6 +39,7 @@ app.delete('/cohort/:id', (req, res) => {
         .then((data) => res.status(204).send())
         .catch((err) => console.log(err))
     })
+
 })
 
 //-------------------------------cohort------------------------------//
@@ -66,8 +67,13 @@ app.post('/student', (req, res) => {
 
 app.delete('/student/:id', (req, res) => {
   db.students.findByIdAndDelete(req.params.id)
-    .then((data) => res.status(204).send())
-    .catch((err) => console.log(err))
+    .then((data) => {
+      var cn=data.cohort_name
+      db.cohorts.findOneAndUpdate({ name: cn }, { $inc: { students_number: -1 } })
+        .then((data) => { res.status(204).send() })
+        .catch((err) => console.log(err))
+    })
+
 })
 
 app.put('/student/:id', (req, res) => {
@@ -110,7 +116,7 @@ app.post('/login', (req, res) => {
   console.log(req.body)
   db.users.find({ username: req.body.username })
     .then((data) => {
-      if (crypt.compareHash(req.body.password,data[0].password,data[0].salt)) {
+      if (crypt.compareHash(req.body.password, data[0].password, data[0].salt)) {
         res.status(201).send(true)
       }
       else {

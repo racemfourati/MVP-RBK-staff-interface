@@ -21,7 +21,7 @@ export default class cohort extends Component {
             <div>
                 <div className='container cohort '>
                     <div><p className='cohort-text'>Cohort Name:</p><p className='cohort-value'>{this.props.cohort.name}</p> </div>
-                    <div><p className='cohort-text'> Starting Date:</p ><p className='cohort-value'>{this.props.cohort.start_date}</p></div>
+                    <div><p className='cohort-text'> Starting Date:</p ><p className='cohort-value'>{this.props.cohort.start_date.slice(0,10)}</p></div>
                     <div><p className='cohort-text'> Number of students :</p><p className='cohort-value'>{this.props.cohort.students_number}</p></div>
                 </div>
                 <div className='cohort-buttons'>
