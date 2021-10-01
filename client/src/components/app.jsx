@@ -127,7 +127,7 @@ export default class App extends Component {
           })
         }
       })
-      .catch((err) => { console.log(err) })
+      .catch((err) => { alert('wrong username or wrong password') })
   }
   switchSignIn = () => {
     this.setState({
